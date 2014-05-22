@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.util.Assert;
 
 import xebia.ch.controller.MowerController;
 import xebia.ch.model.Direction;
@@ -57,13 +57,13 @@ public class BrokenTest extends AbstractTest {
 		MowerController mowerController = new MowerController(super.mowers);
 		mowerController.run();
 
-		Assert.isTrue(mower1.getIncidents().isEmpty());
-		Assert.notEmpty(mower4.getIncidents());
-		Assert.isTrue(mowerController.hasNoIncident());
+		Assert.assertTrue(mower1.getIncidents().isEmpty());
+		Assert.assertTrue(!mower4.getIncidents().isEmpty());
+		Assert.assertTrue(mowerController.hasNoIncident());
+		
 		LOGGER.info("*************************************************");
 		LOGGER.info("*****End Collision Case *****");
 		LOGGER.info("*************************************************");
-
 	}
 
 	@Test
@@ -77,18 +77,16 @@ public class BrokenTest extends AbstractTest {
 		super.mowers.add(mower3); // it start position is occupied
 		MowerController controller = new MowerController(super.mowers);
 		controller.run();
-		Assert.isTrue(!controller.hasNoIncident());
-		Assert.isTrue(mower1.getIncidents().isEmpty());
-		Assert.isTrue(mower2.getIncidents().isEmpty());
+		Assert.assertTrue(!controller.hasNoIncident());
+		Assert.assertTrue(mower1.getIncidents().isEmpty());
+		Assert.assertTrue(mower2.getIncidents().isEmpty());
+		
 		// Assert
 		LOGGER.info("*************************************************");
 		LOGGER.info("****** End Occupied Start Position Case *********");
 		LOGGER.info("*************************************************");
 	}
 	
-	/**
-	 * TODO
-	 */
 	@Test
 	public void testOutOfLawn() {
 		LOGGER.info("*************************************************");
@@ -98,8 +96,9 @@ public class BrokenTest extends AbstractTest {
 		super.mowers.add(mower5);
 		MowerController mowerController = new MowerController(super.mowers);
 		mowerController.run();
-		Assert.isTrue(!mower5.getIncidents().isEmpty());
-		assertEquals(mower5.getIncidents().size(), 3);
+		Assert.assertTrue(!mower5.getIncidents().isEmpty());
+		Assert.assertEquals(mower5.getIncidents().size(), 3);
+		
 		// Assert
 		LOGGER.info("*************************************************");
 		LOGGER.info("*********** End Out OF Lawn Case ****************");

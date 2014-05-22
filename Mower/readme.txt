@@ -1,18 +1,17 @@
-J'ai opté pour une configuration au niveau des tests automatisés plutôt que le parsing d'un fichier. 
-J'ai supposé que chaque tendeuse doit connaitre au préalable la pelouse, sa position de départ ainsi que ses instructions. 
-La contrainte de déplacement séquentielle est géré implicitement dans la boucle for. Pas besoin de call back ou de pattern
-oberver.
-Le controller c'est lui qui met la tendeuse dans une zone non occupé. ensuite c'est à la tendeuse de vérifier qu'elle ne rentrer pas en collision avec
-les autres tendeuses. 
-Pas d'exceptions levées et par conséquent pas d'exceptions traitées.
-//Ajouter de l'aop pour injecter un timer entre les méthodes histoire de faire vraie.
-//pattern observer : communication entre plusieurs tendeuse
-//un callback.
-//debug step by step
-//Clean code/ commentary
-Pas le temps de filter les log dans 2 fichiers différents.
-essayer en console sur mac pour voir les logs.
-//Pousser tout ça sur github
+La configuration des instructions est définie au niveau des tests automatisés. Au lieu dans un fichier en entrée.
 
-assert avec eclipse il ne l'a detecte pas mais avec maven il la détecte
-aspectj ne marche pas avec maven pas de log en sortie
+Chaque tendeuse doit connaître au préalable la dimension de la pelouse, sa position de départ ainsi que ses instructions.
+Le controller a une vue sur tout les tendeuses.A noter que le pattern "observer" aurait pu être une solution, aussi.
+Le rôle du controller s'arrête au lancement de la tendeuse dans une position non occupée.
+Par la suite c'est à la tendeuse d'assurer ses coups(éviter les collisions et les sorties de piste). 
+Aucune exception n'est lévée/traitée. Ceci est remplacé par l'enregistrement des incidents survenus au cours des parcours.
+
+L'AOP n'est utilisé que pour injecter un timer entre les instructions afin de les voir dérouler un par un. 
+Remarque j'aurais pu utiliser la même technique pour les logs.
+Le ICallBack#endTreatment est utilisé afin d'isoler les traitements post instructions.
+
+Les logs ont deux sorties : 
+	°Terminal
+	°Fichier : mower.log
+Pour lancer l'application : mvn test ou mvn clean install
+avec eclipse click droit -> run as Junit.

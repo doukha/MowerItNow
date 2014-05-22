@@ -10,6 +10,14 @@ import xebia.ch.model.Incident;
 import xebia.ch.model.Mower;
 import xebia.ch.model.Position;
 
+/**
+ * Control mowers.
+ * 
+ * Launch mowers one by one after verifying the start position.
+ * 
+ * @author samyboukhris
+ * 
+ */
 public class MowerController implements ICallBack {
 
 	private static final Logger LOGGER = Logger.getLogger(MowerController.class.getName());

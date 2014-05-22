@@ -110,7 +110,7 @@ public class Mower {
 				setPosition(nextPosition);
 				LOGGER.info(getName() + ": i'm in postion " + getPosition());
 			} else {
-				LOGGER.warn(getName() + ":Wrong destination !");
+				LOGGER.warn(getName() + ": Wrong destination !");
 				Incident newIncident = MowerHelper.analyseIncident(isOccupiedPosition);
 				getIncidents().add(newIncident);
 			}
@@ -120,7 +120,7 @@ public class Mower {
 
 	private void rotateTower(Instruction instruction) {
 		position.setDirection(MowerHelper.computeDirection(1, instruction, position.getDirection()));
-		LOGGER.info(getName() + " my new direction is " + position.getDirection());
+		LOGGER.info(getName() + ": my new direction is " + position.getDirection());
 	}
 
 }

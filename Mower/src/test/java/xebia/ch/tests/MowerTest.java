@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.util.Assert;
 
 import xebia.ch.controller.MowerController;
 import xebia.ch.model.Direction;
@@ -51,18 +51,18 @@ public class MowerTest extends AbstractTest {
 		MowerController mowerController = new MowerController(super.mowers);
 		mowerController.run();
 		Position mower1Position = mower1.getPosition();
-		assertEquals(mower1Position.getX(), 1);
-		assertEquals(mower1Position.getY(), 3);
-		assertEquals(mower1Position.getDirection(), Direction.NORTH);
+		Assert.assertEquals(mower1Position.getX(), 1);
+		Assert.assertEquals(mower1Position.getY(), 3);
+		Assert.assertEquals(mower1Position.getDirection(), Direction.NORTH);
 
 		Position mower2Position = mower2.getPosition();
-		assertEquals(mower2Position.getX(), 5);
-		assertEquals(mower2Position.getY(), 1);
-		assertEquals(mower2Position.getDirection(), Direction.EAST);
+		Assert.assertEquals(mower2Position.getX(), 5);
+		Assert.assertEquals(mower2Position.getY(), 1);
+		Assert.assertEquals(mower2Position.getDirection(), Direction.EAST);
 
-		Assert.isTrue(mower1.getIncidents().isEmpty());
-		Assert.isTrue(mower2.getIncidents().isEmpty());
-		Assert.isTrue(mowerController.hasNoIncident());
+		Assert.assertTrue(mower1.getIncidents().isEmpty());
+		Assert.assertTrue(mower2.getIncidents().isEmpty());
+		Assert.assertTrue(mowerController.hasNoIncident());
 		
 		LOGGER.info("*************************************************");
 		LOGGER.info("*********** End nominal Case ******************");

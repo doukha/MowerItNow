@@ -3,8 +3,6 @@ package xebia.ch.tests;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import junit.framework.TestCase;
 
 import xebia.ch.model.Lawn;
@@ -17,8 +15,12 @@ public abstract class AbstractTest extends TestCase {
 
 	@Override
 	protected void setUp() throws Exception {
-//		new ClassPathXmlApplicationContext("ApplicationContext.xml");
 		mowers.clear();
+	}
+
+	@Override
+	protected void tearDown() throws Exception {
+		mowers = null;
 	}
 
 }
