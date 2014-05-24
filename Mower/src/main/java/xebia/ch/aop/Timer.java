@@ -12,7 +12,7 @@ public class Timer {
 	private static final Logger LOGGER = Logger.getLogger(Timer.class.getCanonicalName());
 
 	/**
-	 * Insert a timer after each instruction.
+	 * Insert a timer before each instruction.
 	 * 
 	 * @param jointPoint
 	 */
